@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Pagination</title>
+        <link
+            rel="icon"
+            href="/assets/favicon.ico"
+            sizes="48x48"
+            type="image/x-icon">
+        <link
+            rel="stylesheet"
+            href="./style.css"
+            type="text/css"
+            referrerpolicy="no-referrer-when-downgrade">
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,-25"
+            fetchpriority="high"
+            crossorigin="anonymous">
+        <script type="importmap">
+            {
+                "imports": {
+                    "element-builder": "./utils/element-builder.js",
+                    "create-button": "./utils/create-button.js",
+                    "utils": "./utils/methods.js",
+                    "settings": "./pagination/settings.js"
+                }
+            }
+        </script>
+        <script type="module" src="./app.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Pagination</h1>
+            <small>More projects on
+                <cite spellcheck="false" translate="no">
+                    <a  href="https://github.com/vinicius-goncalves"
+                        target="_blank"
+                        rel="noopener noreferrer">github.com/vinicius-goncalves</a>
+                </cite>
+            </small>
+        </header>
+        <main>
+            <div data-pagination="wrapper">
+                <div data-pagination="pages"></div>
+            </div>
+        </main>
+    </body>
+</html>
