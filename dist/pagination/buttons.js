@@ -5,18 +5,8 @@ const pagination = document.querySelector('[data-pagination="wrapper"]');
 pagination.addEventListener('pageupdated', (event) => {
     const { nextBtn, previousBtn } = event.detail;
     const { totalPages } = calcConditions({ maxPerPage: settings.maxPerPage });
-    if (settings.currPage <= 1) {
-        previousBtn.style.display = 'none';
-    }
-    else {
-        previousBtn.style.display = 'block';
-    }
-    if (settings.currPage > totalPages - 1) {
-        nextBtn.style.display = 'none';
-    }
-    else {
-        nextBtn.style.display = 'block';
-    }
+    previousBtn.style.display = settings.currPage <= 1 ? 'none' : 'block';
+    nextBtn.style.display = settings.currPage > totalPages - 1 ? 'none' : 'block';
 });
 function createVirtualButtons() {
     const nextBtn = createButton('next');
@@ -35,10 +25,10 @@ function createVirtualButtons() {
         renderPages(clickedOnNextBtn ? ++settings.currPage : --settings.currPage);
         pagination.dispatchEvent(pageUpdated);
     });
-    return { nextBtn, previousBtn };
+    return { previousBtn, nextBtn };
 }
 function renderButtons() {
-    const { nextBtn, previousBtn } = createVirtualButtons();
+    const { previousBtn, nextBtn } = createVirtualButtons();
     return (() => {
         const nodes = [nextBtn, previousBtn];
         const existedNodes = nodes.filter(node => pagination.contains(node));

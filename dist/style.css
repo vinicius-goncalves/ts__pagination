@@ -3,6 +3,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
 
 body {
+
     background-color: #101010;
 
     & header {
@@ -11,17 +12,23 @@ body {
 
         & h1 {
             color: #F9F9F9;
-            text-decoration: 2px underline #1C5BC1;
             transition: letter-spacing 600ms ease-in-out;
+        }
+
+        & :is(h1, a) {
+            text-decoration: 1px underline #1C5BC1;
         }
 
         & h1:hover {
             letter-spacing: 2px;
         }
 
+        & cite {
+            font-style: normal;
+        }
+
         & :is(small, a) {
             color: #8f8f8f;
-            text-decoration: none;
         }
 
         & a:hover {

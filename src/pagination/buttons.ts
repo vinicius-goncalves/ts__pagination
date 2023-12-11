@@ -14,17 +14,9 @@ pagination.addEventListener('pageupdated', (event: Event) => {
     const { nextBtn, previousBtn } = (event as CustomEvent).detail;
     const { totalPages } = calcConditions({ maxPerPage: settings.maxPerPage });
 
-    if(settings.currPage <= 1) {
-        previousBtn.style.display = 'none';
-    } else {
-        previousBtn.style.display = 'block';
-    }
+    previousBtn.style.display = settings.currPage <= 1 ? 'none' : 'block';
+    nextBtn.style.display = settings.currPage > totalPages - 1 ? 'none' : 'block';
 
-    if(settings.currPage > totalPages - 1) {
-        nextBtn.style.display = 'none';
-    } else {
-        nextBtn.style.display = 'block';
-    }
 });
 
 function createVirtualButtons(): Buttons {
@@ -52,12 +44,12 @@ function createVirtualButtons(): Buttons {
         pagination.dispatchEvent(pageUpdated);
     });
 
-    return { nextBtn, previousBtn } as Buttons;
+    return { previousBtn, nextBtn  } as Buttons;
 }
 
 function renderButtons(): void {
 
-    const { nextBtn, previousBtn }: Buttons = createVirtualButtons();
+    const { previousBtn, nextBtn  }: Buttons = createVirtualButtons();
 
     return (() => {
 
