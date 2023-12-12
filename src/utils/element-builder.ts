@@ -1,8 +1,9 @@
 interface ElementBuilder<T extends keyof HTMLElementTagNameMap = any> {
-    addAttribute<K extends keyof HTMLElementTagNameMap[T]>(
+    addAttribute<K extends keyof HTMLElementTagNameMap[T] & string>(
         key: K,
         value: string
     ): ElementBuilder<T>;
+    addCustomAttribute(key: string, value: string): ElementBuilder<T>;
     addClass(className: string): ElementBuilder<T>;
     addClasses(...classes: Array<string>): ElementBuilder<T>;
     addClassesIf(...classes: Array<{ clazz: string, condition: boolean }>): ElementBuilder<T>;
@@ -23,8 +24,17 @@ function buildElement<T extends keyof HTMLElementTagNameMap>(element: T): Elemen
 
     return {
 
-        addAttribute<K extends keyof HTMLElementTagNameMap[T]>(key: K, value: string): ElementBuilder<T> {
+        addAttribute<K extends keyof HTMLElementTagNameMap[T] | string>(key: K, value: string): ElementBuilder<T> {
             el.setAttribute(key as string, value)
+            return this;
+        },
+
+        addCustomAttribute(key: string, value: string): ElementBuilder<T> {
+
+            const attr = document.createAttribute(key);
+            attr.value = value;
+            el.setAttributeNode(attr);
+
             return this;
         },
 

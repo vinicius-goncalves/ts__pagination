@@ -8,6 +8,12 @@ function buildElement(element) {
             el.setAttribute(key, value);
             return this;
         },
+        addCustomAttribute(key, value) {
+            const attr = document.createAttribute(key);
+            attr.value = value;
+            el.setAttributeNode(attr);
+            return this;
+        },
         addClass: function addClass(className) {
             el.className = className;
             return this;

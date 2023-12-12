@@ -4,7 +4,7 @@ interface PaginationSettings<T> {
     content: T[];
 }
 
-const items = Array.from({ length: 100 }, (_, index) => index);
+const items: Array<number> = Array.from({ length: 100 }, (_, index) => index);
 
 const settings: PaginationSettings<number> = {
     currPage: 1,

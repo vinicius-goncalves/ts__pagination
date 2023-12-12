@@ -14,7 +14,17 @@ function createVirtualButtons() {
     const pageUpdated = new CustomEvent('pageupdated', {
         detail: { nextBtn, previousBtn }
     });
-    pagination.dispatchEvent(pageUpdated);
+    pagination.addEventListener('click', (event) => {
+        const target = event.target;
+        const isDataPage = target.matches('[data-page]') ? target : target.closest('[data-page]');
+        if (!isDataPage) {
+            return;
+        }
+        const page = Number.parseInt(target.dataset.page);
+        settings.currPage = page;
+        renderPages(page);
+        pagination.dispatchEvent(pageUpdated);
+    });
     pagination.addEventListener('click', (event) => {
         const targetClicked = event.target;
         const closestBtn = targetClicked.matches('button') ? targetClicked : targetClicked.closest('button');
@@ -25,6 +35,7 @@ function createVirtualButtons() {
         renderPages(clickedOnNextBtn ? ++settings.currPage : --settings.currPage);
         pagination.dispatchEvent(pageUpdated);
     });
+    pagination.dispatchEvent(pageUpdated);
     return { previousBtn, nextBtn };
 }
 function renderButtons() {

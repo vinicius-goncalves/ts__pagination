@@ -2,6 +2,7 @@ import settings from 'settings';
 import buildElement from 'element-builder';
 import { clearTree } from 'utils';
 
+const pagination = document.querySelector('[data-pagination="wrapper"]') as HTMLDivElement;
 const pages = document.querySelector('[data-pagination="pages"]') as HTMLDivElement;
 
 function calcConditions({ maxPerPage }: { maxPerPage: number }) {
@@ -55,6 +56,7 @@ async function renderPages(currPage: number = 1) {
             buildElement('span')
                 .addClasses('page')
                 .addClassesIf({ clazz: 'active', condition: currPage === pageIndex })
+                .addCustomAttribute('data-page', String(pageIndex))
                 .appendOn(pages)
                 .setText(pageIndex)
                 .build();

@@ -23,11 +23,11 @@
                     "element-builder": "./utils/element-builder.js",
                     "create-button": "./utils/create-button.js",
                     "utils": "./utils/methods.js",
-                    "settings": "./pagination/settings.js"
+                    "settings": "./pagination/settings.js",
+                    "faker-js": "https://cdn.skypack.dev/@faker-js/faker@v7.4.0?dts"
                 }
             }
         </script>
-        <script type="module" src="./app.js"></script>
     </head>
     <body>
         <header>
@@ -45,5 +45,7 @@
                 <div data-pagination="pages"></div>
             </div>
         </main>
+        <script type="module" src="./app.js"></script>
+        <script type="module" src="./content.js"></script>
     </body>
 </html>

@@ -16,7 +16,6 @@ pagination.addEventListener('pageupdated', (event: Event) => {
 
     previousBtn.style.display = settings.currPage <= 1 ? 'none' : 'block';
     nextBtn.style.display = settings.currPage > totalPages - 1 ? 'none' : 'block';
-
 });
 
 function createVirtualButtons(): Buttons {
@@ -28,7 +27,22 @@ function createVirtualButtons(): Buttons {
         detail: { nextBtn, previousBtn }
     });
 
-    pagination.dispatchEvent(pageUpdated);
+    pagination.addEventListener('click', (event: Event) => {
+
+        const target = event.target as HTMLElement;
+        const isDataPage = target.matches('[data-page]') ? target : target.closest('[data-page]');
+
+        if(!isDataPage) {
+            return;
+        }
+
+        const page = Number.parseInt(target.dataset.page as string);
+        settings.currPage = page;
+
+        renderPages(page);
+        pagination.dispatchEvent(pageUpdated)
+    });
+
     pagination.addEventListener('click', (event: Event): void => {
 
         const targetClicked = event.target as Element;
@@ -43,6 +57,8 @@ function createVirtualButtons(): Buttons {
 
         pagination.dispatchEvent(pageUpdated);
     });
+
+    pagination.dispatchEvent(pageUpdated);
 
     return { previousBtn, nextBtn  } as Buttons;
 }
