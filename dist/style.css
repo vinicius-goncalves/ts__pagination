@@ -35,15 +35,17 @@ body {
             color: #1C5BC1;
         }
     }
+
+    & main {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
 [data-pagination="wrapper"] {
 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin: 15px auto;
     user-select: none;
     -webkit-user-select: none;
 
@@ -91,5 +93,27 @@ body {
         color: #F9F9F9;
         background-color: #1C5BC1;
         border-color: #1C5BC1;
+    }
+}
+
+[data-person="wrapper"] {
+
+    border: 1px solid #8f8f8f;
+    border-radius: 7px;
+    margin: 15px auto;
+    color: #F9F9F9;
+    padding: 5px;
+    max-width: 50%;
+
+    & [data-person="description"] {
+
+        color: #8f8f8f;
+        font-size: 1.5rem;
+        font-weight: bold;
+
+        & small {
+            font-size: .7rem;
+            margin: 0;
+        }
     }
 }

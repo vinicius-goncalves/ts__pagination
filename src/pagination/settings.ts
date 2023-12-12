@@ -1,15 +1,13 @@
-interface PaginationSettings<T> {
+interface PaginationSettings {
     currPage: number;
     maxPerPage: number;
-    content: T[];
+    contentLength: number;
 }
 
-const items: Array<number> = Array.from({ length: 100 }, (_, index) => index);
-
-const settings: PaginationSettings<number> = {
+const settings: PaginationSettings = {
     currPage: 1,
-    maxPerPage: 5,
-    content: items
+    maxPerPage: 10,
+    contentLength: 50
 };
 
 export default settings;

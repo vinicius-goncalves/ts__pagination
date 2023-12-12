@@ -2,12 +2,11 @@ import settings from 'settings';
 import buildElement from 'element-builder';
 import { clearTree } from 'utils';
 
-const pagination = document.querySelector('[data-pagination="wrapper"]') as HTMLDivElement;
 const pages = document.querySelector('[data-pagination="pages"]') as HTMLDivElement;
 
 function calcConditions({ maxPerPage }: { maxPerPage: number }) {
 
-    const totalPages = Math.ceil(settings.content.length / maxPerPage);
+    const totalPages = Math.ceil(settings.contentLength / maxPerPage);
     const lowestPageOffset = Math.min(5, totalPages);
 
     return { totalPages, lowestPageOffset }
@@ -15,8 +14,7 @@ function calcConditions({ maxPerPage }: { maxPerPage: number }) {
 
 function definePagesRange(): { [key: string]: number } | undefined {
 
-    const { maxPerPage } = settings;
-    const { totalPages, lowestPageOffset } = calcConditions({ maxPerPage });
+    const { totalPages, lowestPageOffset } = calcConditions({ maxPerPage: settings.maxPerPage });
 
     if(typeof settings.currPage === 'undefined') {
         return { startPage: 1, lastPage: lowestPageOffset }
