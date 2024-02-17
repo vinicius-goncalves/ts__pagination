@@ -1,5 +1,5 @@
 interface ElementBuilder<T extends keyof HTMLElementTagNameMap = any> {
-    addAttribute<K extends keyof HTMLElementTagNameMap[T] & string>(
+    addAttribute<K extends keyof HTMLElementTagNameMap[T] | string>(
         key: K,
         value: string
     ): ElementBuilder<T>;

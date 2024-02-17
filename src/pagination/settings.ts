@@ -6,7 +6,7 @@ interface PaginationSettings {
 
 const settings: PaginationSettings = {
     currPage: 1,
-    maxPerPage: 10,
+    maxPerPage: 5,
     contentLength: 50
 };
 

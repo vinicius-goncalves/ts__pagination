@@ -12,7 +12,7 @@ const pagination = document.querySelector('[data-pagination="wrapper"]') as HTML
 pagination.addEventListener('pageupdated', (event: Event) => {
 
     const { nextBtn, previousBtn } = (event as CustomEvent).detail;
-    const { totalPages } = calcConditions({ maxPerPage: settings.maxPerPage });
+    const { totalPages } = calcConditions();
 
     previousBtn.style.display = settings.currPage <= 1 ? 'none' : 'block';
     nextBtn.style.display = settings.currPage > totalPages - 1 ? 'none' : 'block';

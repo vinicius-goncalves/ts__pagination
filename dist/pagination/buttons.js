@@ -4,7 +4,7 @@ import createButton from 'create-button';
 const pagination = document.querySelector('[data-pagination="wrapper"]');
 pagination.addEventListener('pageupdated', (event) => {
     const { nextBtn, previousBtn } = event.detail;
-    const { totalPages } = calcConditions({ maxPerPage: settings.maxPerPage });
+    const { totalPages } = calcConditions();
     previousBtn.style.display = settings.currPage <= 1 ? 'none' : 'block';
     nextBtn.style.display = settings.currPage > totalPages - 1 ? 'none' : 'block';
 });

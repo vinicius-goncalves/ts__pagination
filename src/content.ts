@@ -47,22 +47,20 @@ generateRandomPeople().forEach((person: Person): void => {
         .build();
 });
 
-function updatePeople() {
+function updatePeople(): void {
 
-    const startIndex = (settings.currPage - 1) * settings.maxPerPage;
-    const endIndex = settings.currPage * settings.maxPerPage;
+    const startIndex: number = (settings.currPage - 1) * settings.maxPerPage;
+    const endIndex: number = settings.currPage * settings.maxPerPage;
 
     const contentChildren = [...content.children];
 
-    contentChildren.forEach((element: Element, index: number) => {
+    contentChildren.forEach((element: Element, index: number): void => {
         const el = element as HTMLElement;
-        el.style.setProperty('display', index >= startIndex && index < endIndex ? 'block' : 'none')
+        el.style.setProperty('display', index >= startIndex && index < endIndex ? 'block' : 'none');
     });
 }
 
 pagination.addEventListener('pageupdated', () => {
     updatePeople();
-    content.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    content.scrollIntoView({ block: 'start', behavior: 'smooth' });
 });
-
-// export default contents;

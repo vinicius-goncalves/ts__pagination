@@ -2,13 +2,13 @@ import settings from 'settings';
 import buildElement from 'element-builder';
 import { clearTree } from 'utils';
 const pages = document.querySelector('[data-pagination="pages"]');
-function calcConditions({ maxPerPage }) {
-    const totalPages = Math.ceil(settings.contentLength / maxPerPage);
+function calcConditions() {
+    const totalPages = Math.ceil(settings.contentLength / settings.maxPerPage);
     const lowestPageOffset = Math.min(5, totalPages);
     return { totalPages, lowestPageOffset };
 }
 function definePagesRange() {
-    const { totalPages, lowestPageOffset } = calcConditions({ maxPerPage: settings.maxPerPage });
+    const { totalPages, lowestPageOffset } = calcConditions();
     if (typeof settings.currPage === 'undefined') {
         return { startPage: 1, lastPage: lowestPageOffset };
     }
